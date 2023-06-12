@@ -1,24 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import { Guitar } from "./components/Guitar/Guitar";
 
 function App() {
+  const [activeChord, setActiveChord] = useState<string | undefined>(undefined);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <select onChange={(e) => setActiveChord(e.target.value)}>
+        <option value={undefined} defaultChecked={true}>
+          Выберите аккорд
+        </option>
+        <option value="G">G</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+      </select>
+      <Guitar activeChord={activeChord} />
     </div>
   );
 }
